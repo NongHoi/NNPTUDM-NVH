@@ -11,7 +11,7 @@ async function fetchPosts() {
     if (!postsContainer) return;
 
     postsContainer.innerHTML = "";
-    posts.forEach((post) => {
+    posts.filter(post => !post.isDelete).forEach((post) => {
       const row = document.createElement("tr");
       row.innerHTML = `
         <td>${post.id}</td>
@@ -119,7 +119,9 @@ window.deletePost = async function(id) {
   if (!confirm("Bạn có chắc muốn xóa bài viết này?")) return;
   try {
     const response = await fetch(`${BASE_URL}/${id}`, {
-      method: "DELETE",
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ isDelete: true })
     });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     await fetchPosts();

@@ -1,5 +1,12 @@
 {
-  "posts": [],
+  "posts": [
+    {
+      "id": "1",
+      "title": "lene",
+      "views": 1,
+      "isDelete": true
+    }
+  ],
   "comments": [
     {
       "id": "1",
