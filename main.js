@@ -33,12 +33,9 @@ async function fetchPosts() {
 async function addPost(event) {
   event.preventDefault();
 
-  const idEl = document.getElementById("id");
   const titleEl = document.getElementById("title");
   const viewsEl = document.getElementById("views");
   const submitBtn = document.getElementById("addPost");
-
-  const id = idEl.value.trim();
   const title = titleEl.value.trim();
   const views = Number(viewsEl.value.trim()) || 0;
 
@@ -48,10 +45,22 @@ async function addPost(event) {
     return;
   }
 
-  let payload = { title, views };
-  if (id) {
-    payload.id = Number(id);
+  // Lấy danh sách bài viết hiện có để tính id tự tăng
+  let newId = 1;
+  try {
+    const response = await fetch(BASE_URL);
+    if (response.ok) {
+      const posts = await response.json();
+      if (Array.isArray(posts) && posts.length > 0) {
+        const maxId = Math.max(...posts.map(p => Number(p.id)));
+        newId = maxId + 1;
+      }
+    }
+  } catch (err) {
+    console.warn("Không thể lấy danh sách bài viết để tính id tự tăng.");
   }
+
+  let payload = { id: String(newId), title, views };
 
   try {
     submitBtn.disabled = true;

@@ -1,16 +1,5 @@
 {
-  "posts": [
-    {
-      "id": "1",
-      "title": "ádasd",
-      "views": 500
-    },
-    {
-      "id": "2",
-      "title": "tttt",
-      "views": 60
-    }
-  ],
+  "posts": [],
   "comments": [
     {
       "id": "1",
