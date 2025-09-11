@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <!-- bootstrap -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <!-- Quan trọng: defer để đảm bảo DOM sẵn sàng trước khi chạy main.js -->
+  <script src="main.js" defer></script>
+</head>
+<body class="container py-4">
+
+  <h1 class="mt-4">Add Post</h1>
+  <form id="addPostForm" class="row g-3 mb-4">
+    <div class="col-md-2">
+      <label for="id" class="form-label">ID (tuỳ chọn)</label>
+      <input type="number" id="id" class="form-control" placeholder="(auto)" autocomplete="off"/>
+    </div>
+    <div class="col-md-6">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" id="title" class="form-control" required autocomplete="off"/>
+    </div>
+    <div class="col-md-2">
+      <label for="views" class="form-label">Views</label>
+      <input type="number" id="views" class="form-control" value="0" min="0" autocomplete="off"/>
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+      <button type="submit" id="addPost" class="btn btn-primary w-100">Add Post</button>
+    </div>
+  </form>
+
+  <h2>Posts</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th style="width: 10%">ID</th>
+        <th>Title</th>
+        <th style="width: 15%">Views</th>
+    npx json-server --watch db.json --port 3000    <th style="width: 20%">Actions</th>
+      </tr>
+    </thead>
+    <tbody id="posts"></tbody>
+  </table>
+</body>
+</html>
